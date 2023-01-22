@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 
-import { Loader, FormField, Card } from '../components/index.js'
+import { Loader, FormField, Card } from '../components';
 
 
 

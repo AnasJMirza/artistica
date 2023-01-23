@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { getRandomPrompts } from '../utils';
 import { FormField, Loader } from '../components';
 
+import axios from '../axios.js'
+
 import preview from '../assets/frame.png';
 
 const CreatePost = () => {
@@ -25,12 +27,31 @@ const CreatePost = () => {
 
     // logical funtions
 
+    const generateImage = async () => {
+        if (form.prompt) {
+            try {
+                setIsGeneratingImage(true);
+                const body = {
+                    prompt: form.prompt,
+                }
+                const response = await axios.post('/api/v1/open-ai/', body)
+                setForm({ ...form, photo: `data:image/jpeg;base64,${response.data.photo}` })
+            } catch (error) {
+                alert(error)
+            } finally {
+                setIsGeneratingImage(false);
+            }
+        } else {
+            alert("please enter prompt");
+        }
+    }
+
     const handleSubmit = () => {
         
     }
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value})
+        setForm({ ...form, [e.target.name]: e.target.value});
    
     }
 
@@ -81,7 +102,11 @@ const CreatePost = () => {
                     {
                         isGeneratingImage && (
                             <div className='absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg'>
+                                <div className='flex flex-col gap-2 justify-center items-center text-white'>
                                 <Loader />
+                                please wait...
+                                </div>
+                                    
                             </div>
                         )
                     }
@@ -89,6 +114,7 @@ const CreatePost = () => {
 
                 <div>
                     <button
+                    onClick={generateImage}
                     type="button"
                     className='p-3 w-full bg-[#6469ff] font-semibold text-white rounded'
                     >

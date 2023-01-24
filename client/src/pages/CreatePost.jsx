@@ -38,14 +38,14 @@ const CreatePost = () => {
                     prompt: form.prompt,
                 }
                 const response = await axios.post('/api/v1/open-ai/', body);
-                setForm({ ...form, photo: `data:image/jpeg;base64,${response.data.photo}` })
+                setForm({ ...form, photo: `data:image/jpeg;base64,${response.data.photo}`})
             } catch (error) {
                 alert(error)
             } finally {
                 setIsGeneratingImage(false);
             }
         } else {
-            alert("please enter prompt");
+            alert("please enter all inputs");
         }
     }
 

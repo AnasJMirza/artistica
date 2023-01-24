@@ -31,7 +31,7 @@ const CreatePost = () => {
     // logical funtions
 
     const generateImage = async () => {
-        if (form.prompt) {
+        if (form.prompt && form.name) {
             try {
                 setIsGeneratingImage(true);
                 const body = {

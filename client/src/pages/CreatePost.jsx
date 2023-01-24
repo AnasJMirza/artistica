@@ -98,7 +98,7 @@ const CreatePost = () => {
                 labelName="Your Name"
                 type="text"
                 name="name"
-                placeholder="Ex., Muhammad Ahmad"
+                placeholder="Ex., Anas Javed"
                 value={form.name}
                 handleChange={handleChange}
                 />
@@ -114,12 +114,12 @@ const CreatePost = () => {
                 handleSurpriseMe={handleSurpriseMe}
                 />
 
-                <div className='relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-80 p-3 h-80 flex justify-center items-center'>
+                <div className='relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-2/6 h-2/6 p-3 flex justify-center items-center'>
                     {
                         form.photo ? (
-                            <img src={form.photo} alt={form.prompt} />
+                            <img src={form.photo} alt={form.prompt} className='w-full object-contain' />
                         ) : (
-                            <img src={preview} alt='abc'  className='w-9/12 h-9/12 object-contain opacity-40'/>
+                            <img src={preview} alt='preview'  className='w-full object-contain opacity-40'/>
                         )
                     }
 

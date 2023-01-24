@@ -36,9 +36,9 @@ const Home = () => {
   };
 
   useEffect(() => {
-    try {
-      setLoader(true);
-      const fetchPosts = async () => {
+      try {
+        setLoader(true);
+        const fetchPosts = async () => {
         const response = await axios.get("/api/v1/post");
         
         setAllPosts(response.data.data.reverse());
@@ -48,7 +48,9 @@ const Home = () => {
     } catch (error) {
       alert(error);
     } finally {
-      setLoader(false);
+      setTimeout(() => {
+        setLoader(false);
+      }, 1000);
     }
   }, []);
 

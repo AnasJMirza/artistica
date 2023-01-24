@@ -50,7 +50,7 @@ const Home = () => {
     } finally {
       setTimeout(() => {
         setLoader(false);
-      }, 1000);
+      }, 2500);
     }
   }, []);
 

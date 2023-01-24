@@ -1,6 +1,7 @@
 # Artistica
 Artistica is an innovative web application that allows users to generate unique images based on a prompt they enter. Using state-of-the-art machine learning algorithms and OpenAI APIs, Artistica creates one-of-a-kind images that can be used for personal or commercial purposes.
 
+
 ## Features
 - Generate images based on user-entered prompts
 - Utilize OpenAI APIs for advanced image generation

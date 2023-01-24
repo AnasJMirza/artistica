@@ -92,7 +92,7 @@ const CreatePost = () => {
                 <p className='text-[14px] text-[#666e75] mt-2 max-w-[600px]'>Create stunning, visually captivating and imaginative images created by Artistica's advanced AI technology</p>
             </div>
 
-            <form className='mt-16 flex flex-col gap-5'>
+            <form className='mt-16 flex flex-col gap-5' onSubmit={handleSubmit}>
 
                 <FormField
                 labelName="Your Name"
@@ -148,7 +148,7 @@ const CreatePost = () => {
 
                 <div className='mt-0'>
                     <p className=' text-[#666e75] text-[14px] max-w-[500px]'>Once you have crafted the desired image, it can be easily shared with the wider community for others to enjoy</p>
-                    <button onClick={handleSubmit} type='submit' className='mt-3 p-3 w-full bg-green-600 font-semibold text-white rounded'>
+                    <button  type='submit' className='mt-3 p-3 w-full bg-green-600 font-semibold text-white rounded'>
                         {loader ? 'Sharing...' : 'Share With the community'}
                     </button>
                 </div>

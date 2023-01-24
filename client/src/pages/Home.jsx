@@ -41,7 +41,7 @@ const Home = () => {
       const fetchPosts = async () => {
         const response = await axios.get("/api/v1/post");
         
-        setAllPosts(response.data.data.sort((a, b) => 0.5 - Math.random()));
+        setAllPosts(response.data.data.reverse());
       };
 
       fetchPosts();

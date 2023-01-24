@@ -18,7 +18,7 @@ function App() {
           <p className='font-bold text-2xl' style={{ fontFamily:"poppins" }}>Artistica</p>
         </Link>
 
-        <Link to="/create-post" className='bg-[#6469ff] px-6 py-2 rounded-md cursor-pointer font-inter font-medium text-white'>
+        <Link to="/create-post" className='bg-[#6469ff] hover:bg-[#3e43d4] transition-all px-6 py-2 rounded-md cursor-pointer font-inter font-medium text-white'>
           Create
         </Link>
 

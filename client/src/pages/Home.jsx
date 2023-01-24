@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-
+import React, { useEffect, useState } from 'react';
+import axios from '../axios.js'
 
 import { Loader, FormField, Card } from '../components';
 
@@ -21,9 +21,34 @@ const RenderCards = ({ data, title }) => {
 
 const Home = () => {
 
+
+    
+    
+
+
+
     // states
     const [loader, setLoader] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('term');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [allPosts, setAllPosts] = useState(null);
+
+
+    useEffect(() => {
+        try {
+          setLoader(true);
+          const fetchPosts = async () => {
+              const response = await axios.get('/api/v1/post');
+              setAllPosts(response.data.data.reverse());
+              // console.log(response.data.data.reverse());
+            }
+      
+            fetchPosts();
+        } catch (error) {
+          alert(error)
+        } finally {
+          setLoader(false);
+        }
+      }, [])
 
     return (
         <section className='max-w-7xl mx-auto'>
@@ -50,7 +75,7 @@ const Home = () => {
                                 )
                             }
 
-                            <div className='grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1'>
+                            <div className='grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3'>
                                 {
                                     searchTerm ? (
                                         <RenderCards 
@@ -59,7 +84,7 @@ const Home = () => {
                                         />
                                     ) : (
                                         <RenderCards 
-                                        data={[]}
+                                        data={allPosts}
                                         title="There are currently no posts to display"
                                         />
                                     )

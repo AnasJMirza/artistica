@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 import { getRandomPrompts } from '../utils';
 import { FormField, Loader } from '../components';
@@ -8,6 +9,8 @@ import axios from '../axios.js'
 import preview from '../assets/frame.png';
 
 const CreatePost = () => {
+
+    const navigate = useNavigate();
 
     // states
 
@@ -34,7 +37,7 @@ const CreatePost = () => {
                 const body = {
                     prompt: form.prompt,
                 }
-                const response = await axios.post('/api/v1/open-ai/', body)
+                const response = await axios.post('/api/v1/open-ai/', body);
                 setForm({ ...form, photo: `data:image/jpeg;base64,${response.data.photo}` })
             } catch (error) {
                 alert(error)
@@ -46,8 +49,29 @@ const CreatePost = () => {
         }
     }
 
-    const handleSubmit = () => {
-        
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (form.prompt && form.name) {
+            try {
+                setLoader(true);
+    
+                const body = {
+                    name: form.name,
+                    prompt: form.prompt,
+                    photo: form.photo,
+                }
+                const response = await axios.post('/api/v1/post/', body);
+                navigate('/');
+                
+            } catch (error) {
+                alert(error)
+            } finally {
+                setLoader(false);
+            }
+        } else {
+            alert("fill all inputs")
+        }
     }
 
     const handleChange = (e) => {
@@ -68,7 +92,7 @@ const CreatePost = () => {
                 <p className='text-[14px] text-[#666e75] mt-2 max-w-[600px]'>Create stunning, visually captivating and imaginative images created by Artistica's advanced AI technology</p>
             </div>
 
-            <form className='mt-16 flex flex-col gap-5' onSubmit={handleSubmit}>
+            <form className='mt-16 flex flex-col gap-5'>
 
                 <FormField
                 labelName="Your Name"
@@ -124,7 +148,7 @@ const CreatePost = () => {
 
                 <div className='mt-0'>
                     <p className=' text-[#666e75] text-[14px] max-w-[500px]'>Once you have crafted the desired image, it can be easily shared with the wider community for others to enjoy</p>
-                    <button type='submit' className='mt-3 p-3 w-full bg-green-600 font-semibold text-white rounded'>
+                    <button onClick={handleSubmit} type='submit' className='mt-3 p-3 w-full bg-green-600 font-semibold text-white rounded'>
                         {loader ? 'Sharing...' : 'Share With the community'}
                     </button>
                 </div>

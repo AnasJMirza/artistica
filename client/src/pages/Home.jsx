@@ -1,19 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "../axios.js";
 
-import { Loader, FormField, Card } from "../components";
+import { Loader, FormField, RenderCards } from "../components";
 
-// a component for rendering cards depending on if the search term exist or not.
 
-const RenderCards = ({ data, title }) => {
-  if (data?.length > 0) {
-    return data.map((post) => <Card key={post._id} {...post} />);
-  }
-
-  return (
-    <h2 className="mt-5 font-bold text-[#e73535] text-xl uppercase w-[100vh]">{title}</h2>
-  );
-};
 
 const Home = () => {
   // states
@@ -25,14 +15,14 @@ const Home = () => {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value); //seting search term state to comapre it with posts
 
-    // setTimeout(() => {
+    setTimeout(() => {
       const searchResult = allPosts.filter(
         (item) =>
           item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           item.prompt.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setSearchedPosts(searchResult);
-    // }, 500);
+    }, 500);
   };
 
   const fetchPosts = async () => {

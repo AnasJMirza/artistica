@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 import { Link, Routes, Route } from 'react-router-dom';
-import { Home, CreatePost, Login, Register, PageNotFound } from './pages/index.js';
+import { Home, CreatePost, Login, Register, PageNotFound, Profile } from './pages/index.js';
 
 import Logo from './assets/logo.png';
 
@@ -34,6 +34,7 @@ function App() {
           <Route path='/create-post' element={ <CreatePost/> } />
           <Route path='/login' element={ <Login/> } />
           <Route path='/register' element={ <Register/> } />
+          <Route path='/profile/:id' element={ <Profile/> } />
           <Route path='*' element={ <PageNotFound/> } />
         </Routes>
       </main>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import loginImage from "../assets/login.png";
 import logo from "../assets/logo.png";
 
@@ -29,7 +30,7 @@ const Login = () => {
                 </label>
                 <div className="border rounded border-[#D0D5DD]">
                   <input
-                    type="text"
+                    type="email"
                     className="w-full  h-10 pl-2 bg-transparent focus:outline-none text-sm text-[#667085]"
                     id="email"
                     placeholder="anas@example.com"
@@ -46,7 +47,7 @@ const Login = () => {
                 </label>
                 <div className="border rounded border-[#D0D5DD]">
                   <input
-                    type="text"
+                    type="password"
                     className="w-full  h-10 pl-2 bg-transparent focus:outline-none text-sm text-[#667085]"
                     id="password"
                     placeholder="Length must be grater then 4"
@@ -69,14 +70,14 @@ const Login = () => {
               </div>
               <div className="text-xs flex justify-center gap-1 text-[#344054]">
                 Don’t have an account?{" "}
-                <a href="#" className="text-[5429FF] underline">
-                  Register
-                </a>
+                <Link to="/register" >
+                  <p className="text-[5429FF] underline">Register</p>
+                </Link>
               </div>
             </div>
           </div>
 
-          <div className="text=[#667085] text-xs italic pl-4 pb-4">
+          <div className="text-[#818181] text-xs italic pl-4 pb-4">
             @CreatedbyAnasJMirza
           </div>
         </div>

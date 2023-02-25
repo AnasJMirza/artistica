@@ -6,12 +6,12 @@ import { Loader, FormField, Card } from "../components";
 // a component for rendering cards depending on if the search term exist or not.
 
 const RenderCards = ({ data, title }) => {
-  if (data?.length >= 0) {
+  if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);
   }
 
   return (
-    <h2 className="mt-5 font-bold text-[#e73535] text-xl uppercase">{title}</h2>
+    <h2 className="mt-5 font-bold text-[#e73535] text-xl uppercase w-[100vh]">{title}</h2>
   );
 };
 
@@ -25,33 +25,30 @@ const Home = () => {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value); //seting search term state to comapre it with posts
 
-    setTimeout(() => {
+    // setTimeout(() => {
       const searchResult = allPosts.filter(
         (item) =>
           item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           item.prompt.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setSearchedPosts(searchResult);
-    }, 500);
+    // }, 500);
+  };
+
+  const fetchPosts = async () => {
+    setLoader(true)
+    try {
+      const response = await axios.get("/api/v1/post");
+      setAllPosts(response.data.data.reverse());
+    } catch (error) {
+      alert(error)
+    } finally {
+      setLoader(false)
+    }
   };
 
   useEffect(() => {
-      try {
-        setLoader(true);
-        const fetchPosts = async () => {
-        const response = await axios.get("/api/v1/post");
-        
-        setAllPosts(response.data.data.reverse());
-      };
-
-      fetchPosts();
-    } catch (error) {
-      alert(error);
-    } finally {
-      setTimeout(() => {
-        setLoader(false);
-      }, 2500);
-    }
+    fetchPosts();
   }, []);
 
   return (
@@ -78,10 +75,13 @@ const Home = () => {
       </div>
 
       <div className="mt-5">
-        {loader ? (
-          <div className="flex justify-center items-center">
+        {loader? (
+          <>
+          <div className="flex justify-center items-center flex-col">
             <Loader />
+            Please Wait...
           </div>
+          </>
         ) : (
           <>
             {searchTerm && (

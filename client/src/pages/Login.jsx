@@ -65,7 +65,7 @@ const Login = () => {
                 </a>
               </div>
 
-              <div className="bg-[#5429FF] h-10 cursor-pointer mb-4 rounded flex justify-center items-center text-white">
+              <div className="bg-[#6469ff] hover:bg-[#3e43d4] transition-all h-10 cursor-pointer mb-4 rounded flex justify-center items-center text-white">
                 Sign in
               </div>
               <div className="text-xs flex justify-center gap-1 text-[#344054]">

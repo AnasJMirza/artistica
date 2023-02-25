@@ -73,7 +73,7 @@ const Register = () => {
                   </div>
                 </div>
 
-                <div className="bg-[#5429FF] h-10 cursor-pointer my-3 rounded flex justify-center items-center text-white">
+                <div className="bg-[#6469ff] hover:bg-[#3e43d4] transition-all h-10 cursor-pointer my-3 rounded flex justify-center items-center text-white">
                   Register
                 </div>
                 <div className="text-xs flex justify-center gap-1 text-[#344054]">
@@ -93,7 +93,7 @@ const Register = () => {
           <div className="w-1/2 bg-[#CBCCE8] flex flex-col items-center justify-center pb-5 rounded-3xl">
 
             <label htmlFor="profile" className="flex justify-center">                    
-                <img src={profile} alt="loginImage" className="w-1/2 border-4 rounded-full cursor-pointer"/>
+                <img src={profile} alt="loginImage" className="w-1/2 border-t-4 border-x-2 border-[#6469ff] rounded-full cursor-pointer"/>
             </label>
             <p className="text-[#344054] mt-5 text-lg font-bold">Profile Photo</p>
             <input type="file" name="" id="profile" className="hidden"/>

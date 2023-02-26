@@ -5,7 +5,8 @@ import cors from 'cors';
 import connectDB from './mongoDB/connection.js';
 
 import postRoutes from './routes/post.js';
-import openAIRoutes from './routes/openAI.js'
+import openAIRoutes from './routes/openAI.js';
+import authRoutes from './routes/auth.js';
 
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
 app.use('/api/v1/post', postRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/v1/open-ai', openAIRoutes);
 
 // server route
